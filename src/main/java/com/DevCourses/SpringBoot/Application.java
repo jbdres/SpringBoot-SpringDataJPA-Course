@@ -7,35 +7,37 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Application {
     public static void main(String[] args) {
 
-        var ctx = SpringApplication.run(Application.class, args);
+        /* Spring REST
+        Is an architectural style for designing web services. It provides a standardized
+        way for systems to communicate over HTTP by using a set of principles rather
+        than a strict protocol. RESTful APIs (Application Programming Interfaces) follow
+        these principles to enable interoperability between different systems.
 
-        FirstService firstService = ctx.getBean(FirstService.class);
-        System.out.println(firstService.getWelcomeMessage());
-        System.out.println(firstService.infoDataSource());
+        Key Principles of REST:
+        1. Statelessness: Each request from a client to a server must contain all the
+           necessary information. The server don't store client session data.
+        2. Client-Server Architecture: The client and server are independent. The client
+           only request resources, the server provides them.
+        3. Uniform Interface: REST API should follow a consistent structure, typically
+           using standard HTTP methods: GET, POST, PUT, DELETE.
+        4. Resource-Based: Everything in REST is treated as a resource, identify by an
+           unique URL (e.g., /users/123 to access user 123).
+        5. Stateless Communication: Each request is processed independently; no client
+           state is stored on the server.
+        6. Cache ability - Responses should be explicitly defined as cacheable or
+           non-cacheable to optimize performance.
+        7. Layered System - a REST API can have multiple layers (e.g., security, load balancing)
+           without affecting the client-server interaction.
 
-        /* Ways to specify the profiles | Resources: https://www.youtube.com/watch?v=feEM2dGEcVA
-        - Via Maven
-        - Via Environment Variable
-        - Using a Jar
-        - NOT in Profile Declarations
-        - Profile Annotation on Class
-        - Profile Annotation on Components
-        - Profile Specific Config Files
+        HTTP Responses: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+        - 1XX Informational, 2XX Success, 3XX Redirection, 4XX Client Error, 5XX Server Error
+
          */
 
-        /* Priority in Configuration Files
-        Spring follows a resolution hierarchy to determine which configuration to use:
-        1. Properties defined in the commands line
-        2. Operative System environment variables
-        3. Profile-specific properties files (application-{profile}.properties)
-        4. Generic properties file (application.properties)
-
-        This hierarchy means that if a property is defined in multiple places, Spring will use the value
-        from the source with the highest priority. This allows for flexible configuration management,
-        where you can have default values in application.properties, override them with profile-specific
-        settings, and make further adjustments using environment variables or command-line arguments.
-         */
-
+        SpringApplication.run(Application.class, args);
+        // Testing Java Records
+        OrderRecord orderRecord = new OrderRecord("Julian", "Car", 1);
+        System.out.println("This is the product: " + orderRecord.productName());
 
     }
 
