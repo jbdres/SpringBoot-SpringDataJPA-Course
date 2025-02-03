@@ -1,62 +1,50 @@
 package com.DevCourses.SpringBoot;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("dev/api")
+@RequestMapping("dev/api/student")
 public class FirstController {
 
-    /* This method creates a conflict because there is already another http method pointing to the same path.
-    @GetMapping("/hello")
-    public String sayHello() {
-        return "Hello from my first controller";
-    }
-    */
+    private final StudentRepository repository;
 
-    // Request Body
-    // e.g., Text Format: Hello World
-    @PostMapping("/post-string")
-    public String postMessage(@RequestBody String message) {
-        return "This is my post message: " + message;
+    public FirstController(StudentRepository repository) { // Implicit Constructor Injection
+        this.repository = repository;
     }
 
-    // Request Body | POJO (Plain Old Java Object)
-    /* e.g., JSON Format
-    {
-        "c-name":"Julian",
-        "productName":"laptop",
-        "quantity":5
-    }
-    */
-    @PostMapping("/post-order")
-    public String postOrder(@RequestBody Order order) {
-        return "This is my post order: " + order.toString();
+    @GetMapping("/")
+    public List<Student> findAllStudents() {
+        return repository.findAll();
     }
 
-    // Request Body with a Record Object
-    @PostMapping("/post-order-record")
-    public String postOrderRecord(@RequestBody OrderRecord orderRecord) {
-        return "This is my post order record: " + orderRecord.toString();
+    @GetMapping("/{id}")
+    public Student findStudentById(@PathVariable Integer id) {
+        return repository.findById(id).orElse(null);
     }
 
-    // Path Variable | Any HTTP request
-    // e.g., http://localhost:8080/hello/friends/2
-    @GetMapping("/resources/{user-list}/{page}")
-    public String pathVar(
-            @PathVariable("user-list") String userList,
-            @PathVariable int page
-    ) {
-        return "My list = " + userList + " | page = " + page;
+    @GetMapping("/search/{student-name}")
+    public List<Student> findStudentByName(@PathVariable("student-name") String studentName) {
+        return repository.findAllByFirstnameContains(studentName);
     }
 
-    // Request Mapping | Any HTTP request
-    // e.g., http://localhost:8080/hello?firstParam=firstValue&secondParam=secondValue
-    @GetMapping("/hello")
-    public String paramVar(
-            @RequestParam("user-name") String userName,
-            @RequestParam String userLastname
-    ) {
-        return "Hello my name is = " + userName + " and my  lastname = " + userLastname;
+    @PostMapping("/")
+    public Student postStudent(@RequestBody Student student) {
+        return repository.save(student);
+    }
+
+    @PutMapping("/{id}")
+    public Student putStudent(@PathVariable Integer id, @RequestBody Student student) {
+        student.setId(id);
+        return repository.save(student);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteStudent(@PathVariable Integer id) {
+        repository.deleteById(id);
     }
 
 }
