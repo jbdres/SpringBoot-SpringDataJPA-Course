@@ -1,29 +1,15 @@
-# Data Source Configuration
 spring:
   datasource:
-    # connection_type:database_type://hostname:port/database_name
     url: jdbc:postgresql://localhost:5432/demo_db
-    # Credentials
     username: postgres
     password: postgres
-    # Which JDBC driver use to connect to our db (Add Postgres dependency to pom.xml)
     driver-class-name: org.postgresql.Driver
-  # Spring Boot uses JPA with hibernate as a persistence provider
   jpa:
     hibernate:
-      # ddl-auto | Specifies that every time the application starts, Hibernate will automatically create tables in the database (and delete old ones!).
-      #   none: It does nothing with the database.
-      #   update: It just updates the tables without deleting them.
-      #   validate: It just checks that the tables match the entities.
-      #   create-drop: It creates the tables when the app starts and deletes them when it closes.
-      ddl-auto: create
-    # Displays in the console the SQL queries that Hibernate executes.
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
-        # Causes SQL queries to be printed in human-readable format to the console.
         format_sql: true
-    # Explicitly defines that PostgreSQL will be used.
     database: postgresql
-    # Specifies the Hibernate dialect for PostgreSQL, which optimizes the generation of SQL queries according to the database.
     database-platform: org.hibernate.dialect.PostgreSQLDialect
