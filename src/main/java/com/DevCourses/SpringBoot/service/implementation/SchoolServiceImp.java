@@ -2,7 +2,7 @@ package com.DevCourses.SpringBoot.service.implementation;
 
 import com.DevCourses.SpringBoot.dto.requests.SchoolRequestDto;
 import com.DevCourses.SpringBoot.dto.responses.SchoolResponseDto;
-import com.DevCourses.SpringBoot.entity.School;
+import com.DevCourses.SpringBoot.model.School;
 import com.DevCourses.SpringBoot.repository.ISchoolRepository;
 import com.DevCourses.SpringBoot.service.interfaces.ISchoolService;
 import com.DevCourses.SpringBoot.service.mapper.SchoolMapper;

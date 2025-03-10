@@ -2,8 +2,8 @@ package com.DevCourses.SpringBoot.service.implementation;
 
 import com.DevCourses.SpringBoot.dto.requests.StudentProfileRequestDto;
 import com.DevCourses.SpringBoot.dto.responses.StudentProfileResponseDto;
-import com.DevCourses.SpringBoot.entity.Student;
-import com.DevCourses.SpringBoot.entity.StudentProfile;
+import com.DevCourses.SpringBoot.model.Student;
+import com.DevCourses.SpringBoot.model.StudentProfile;
 import com.DevCourses.SpringBoot.repository.IStudentProfileRepository;
 import com.DevCourses.SpringBoot.repository.IStudentRepository;
 import com.DevCourses.SpringBoot.service.interfaces.IStudentProfileService;

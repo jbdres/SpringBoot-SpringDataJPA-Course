@@ -2,8 +2,8 @@ package com.DevCourses.SpringBoot.service.mapper;
 
 import com.DevCourses.SpringBoot.dto.requests.StudentProfileRequestDto;
 import com.DevCourses.SpringBoot.dto.responses.StudentProfileResponseDto;
-import com.DevCourses.SpringBoot.entity.Student;
-import com.DevCourses.SpringBoot.entity.StudentProfile;
+import com.DevCourses.SpringBoot.model.Student;
+import com.DevCourses.SpringBoot.model.StudentProfile;
 import org.springframework.stereotype.Service;
 
 @Service
